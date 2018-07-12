@@ -58,6 +58,8 @@ class Post(models.Model):
     # 因为我们一篇文章只有一个作者，而一个作者可能会有多篇文章，因此我们使用的是一对多的关联关系类似Category
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
+    class Meta:
+        ordering = ['-created_time']
 
     def __str__(self):
         return self.title
