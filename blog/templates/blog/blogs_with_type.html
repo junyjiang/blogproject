@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{# 继承base文件将tilte传递给title参数#}
+{% block title %}
+    {{ blog.title }}
+{% endblock %}
+
+{% block nav_blog_active %} active {% endblock %}
+{% block content %}
+   {% for blog in blogs %}
+    <a href="{% url 'blog_detail' blog.pk %}">
+        <h3>{{ blog.title }}</h3>
+    </a>
+        <p>{{ blog.content|truncatechars:30 }}</p>
+    {% empty %}
+    <p>暂无博客敬请期待~</p>
+    <p>一共有 {{ blogs_count}} 博客</p>
+    {% endfor %}
+{% endblock %}
